@@ -1,0 +1,117 @@
+package ccc;
+
+import java.util.Scanner;
+
+public class SunFlowers {
+	
+	private static int n;
+
+	public static void main(String[] args) {
+		
+		/*
+		 *  j j j j
+		 * i
+		 * i
+		 * i
+		 * i
+		 */
+				
+		Scanner jin = new Scanner(System.in);
+		
+		n = jin.nextInt();
+		int[][] mat = new int[n][n];
+		
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				mat[i][j] = jin.nextInt();
+			}
+		}
+		
+		for (int i = 0; i < 3; i++) {
+			if (validate(mat)) {
+				break;
+			}
+			rot90(mat); 
+		}
+		
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				System.out.print(mat[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+		jin.close();
+	}
+	
+	private static boolean validate(int[][] mat) {
+		return (validateColumns(mat) && validateGrowing(mat));
+	}
+	
+	private static boolean validateColumns(int[][] mat) {
+		for (int j = 0; j < n; j++) {
+			for (int i = 1; i < n; i++) {
+				if (mat[i - 1][j] >= mat[i][j]) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	private static boolean validateGrowing(int[][] mat) {
+		for (int i = 0; i < n; i++) {
+			for (int j = 1; j < n; j++) {
+				if (mat[i][j - 1] >= mat[i][j]) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	private static void rot90(int[][] mat) {
+		transpose(mat);
+		reverseColumnsOrRows(mat);
+	}
+	
+	private static void transpose(int[][] mat) {
+		int temp;
+		for (int i = 0; i < n; i++) {
+			for (int j = i; j < n; j++) {
+				temp = mat[j][i]; 
+				mat[j][i] = mat[i][j]; 
+                mat[i][j] = temp; 
+			}
+		}
+	}
+	
+	private static void reverseColumnsOrRows(int[][] mat) {
+		
+		//REVERSE COLUMNS
+		
+		/*int temp;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0, k = n - 1; j < k; j++, k--) { 
+				temp = mat[j][i]; 
+				mat[j][i] = mat[k][i]; 
+				mat[k][i] = temp; 
+			} 
+		}*/
+		
+		//REVERSE ROWS
+		
+		int temp;
+		for (int j = 0; j < n; j++) {
+			int[] row = mat[j];
+			for (int i = 0; i < n / 2; i++) {
+			    temp = row[i];
+			    row[i] = row[n - i - 1];
+			    row[n - i - 1] = temp;
+			}
+			
+		}
+		
+	}
+
+}

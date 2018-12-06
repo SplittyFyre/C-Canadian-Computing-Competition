@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner jin = new Scanner(System.in);
+		
+		int num = jin.nextInt();
+		
+		List<Integer> villages = new ArrayList<Integer>();
+		List<Double> dists = new ArrayList<Double>();
+		 
+		for (int i = 0; i < num; i++) {
+			villages.add(jin.nextInt());
+		}
+		
+		Collections.sort(villages);
+		
+		for (int i = 1; i < num - 1; i++) {
+			int prev = villages.get(i - 1);
+			int next = villages.get(i + 1);
+			dists.add((next - prev) / 2.0);
+		}
+
+		Collections.sort(dists);
+		
+		System.out.printf("%.1f\n", dists.get(0));
+		
+		jin.close();
+		
+	}
+
+}

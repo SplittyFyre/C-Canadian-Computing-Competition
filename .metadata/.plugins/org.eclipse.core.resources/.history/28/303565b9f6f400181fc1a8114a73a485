@@ -1,0 +1,74 @@
+/*
+ * sunflowers.c
+ *
+ *  Created on: Nov 27, 2018
+ *      Author: oscarsplitfire
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+int n;
+int temp;
+
+int i, j;
+
+bool validateGrowth(int **mat) {
+	for (i = 0; i < n; i++) {
+		for (j = 1; j < n; j++) {
+			if (mat[i][j - 1] >= mat[i][j]) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+bool validateColumns(int **mat) {
+	for (j = 0; j < n; j++) {
+		for (i = 1; i < n; i++) {
+			if (mat[i - 1][j] >= mat[i][j]) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+bool validate(int **mat) {
+	return (validateColumns(mat) && validateGrowth(mat));
+}
+
+int main(void) {
+
+	puts("");
+
+	scanf("%d", &n);
+	int **mat = malloc(n * sizeof(int*));
+	for (i = 0; i < n; i++) {
+		mat[i] = malloc(n * sizeof(int));
+	}
+
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < n; j++) {
+			scanf("%d", &(mat[i][j]));
+		}
+	}
+
+
+	for (i = 0; i < n; i++) {
+			for (j = 0; j < n; j++) {
+				printf("%d", (mat[i][j]));
+			}
+		}
+
+	for (i = 0; i < n; i++) {
+		free(mat[i]);
+	}
+	free(mat);
+
+	return 0;
+}
+
+

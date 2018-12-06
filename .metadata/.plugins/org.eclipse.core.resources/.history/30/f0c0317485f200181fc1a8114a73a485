@@ -1,0 +1,25 @@
+/*
+ * sunflowers.c
+ *
+ *  Created on: Nov 27, 2018
+ *      Author: oscarsplitfire
+ */
+
+#include <stdio.h>
+#include <memory.h>
+
+int main(void) {
+
+	puts("");
+
+	int n;
+	scanf("%d", &n);
+	int mat[n][n];
+	memset(mat, 0, n * n * sizeof(int));
+
+	printf("%d, %d", a, b);
+
+	return 0;
+}
+
+
