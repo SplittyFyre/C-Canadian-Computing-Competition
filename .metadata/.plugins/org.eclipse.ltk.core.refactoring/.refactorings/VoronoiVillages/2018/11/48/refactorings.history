@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;VoronoiVillages/l&apos; to &apos;java&apos;" description="Rename resource &apos;l&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="l" name="java" stamp="1543350960310" updateReferences="true"/>
-</session>
